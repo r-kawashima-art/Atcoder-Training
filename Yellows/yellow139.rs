@@ -64,6 +64,27 @@ impl SegmentTreeRMQ {
         res
     }
 
+    fn find_minimum(&self, left: usize, right: usize) -> usize {
+        let mut cell_index_left: usize = self.n + left;
+        let mut cell_index_right: usize = self.n + right + 1;
+        let mut min_value: usize = INF;
+        while cell_index_left < cell_index_right {
+            // if cell_index_left is an odd number
+            if cell_index_left & 1 == 1 {
+                min_value = self.data[cell_index_left].min(min_value);
+                cell_index_left += 1;
+            }
+            if cell_index_right & 1 = 1 {
+                cell_index_right -= 1;
+                min_value = min_value.min(self.data[cell_index_right]);
+            }
+            // divide by 2
+            cell_index_left >>= 1;
+            cell_index_right >>= 1;
+        }
+        return min_value;
+    }
+
     fn update(&mut self, index: usize, value: usize) {
         self.data[index+self.n] = value;
         let mut cur_index: usize = index + self.n;
