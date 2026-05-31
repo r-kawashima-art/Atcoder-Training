@@ -74,7 +74,6 @@ fn main() {
         for c in 0..w {
             let idx = r * w + c;
             if s[r][c] == '#' {
-                /
                 let d = dw[idx];
                 if d != -1 && d % 2 == 1 {
                     ans_row.push('#');
